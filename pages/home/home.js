@@ -1,49 +1,32 @@
 // pages/home/home.js
 import {Theme} from "../../model/theme";
+import {Banner} from "../../model/banner";
 
 Page({
 
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        themeA: null,
+        bannerB: null,
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: async function (options) {
-        const data = await Theme.getHomeLocationA()
+    async onLoad() {
+        this.initAllData()
+    },
+
+    async initAllData() {
+        const themeA = await Theme.getHomeLocationA()
+        const bannerB = await Banner.getHomeLocationB()
+
         this.setData({
-            topTheme: data[0]
+            themeA: themeA[0],
+            bannerB: bannerB,
         })
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
     },
 
     /**
